@@ -1,7 +1,6 @@
 package com.semanientreprise.realmcontacts;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,21 +18,21 @@ import io.realm.Realm;
 
 public class updateContact extends AppCompatActivity {
 
-    @BindView(R.id.search_emailAddress)
-    EditText searchEmailAddress;
     @BindView(R.id.search_nameContainer)
     LinearLayout searchNameContainer;
     @BindView(R.id.searchResultContainer)
     RelativeLayout searchResultContainer;
     Realm realm;
     @BindView(R.id.search_first_name)
-    TextInputEditText searchFirstName;
+    TextInputLayout searchFirstName;
     @BindView(R.id.search_last_name)
-    TextInputEditText searchLastName;
+    TextInputLayout searchLastName;
     @BindView(R.id.search_email)
     TextInputLayout searchEmail;
     @BindView(R.id.search_phone_number)
     TextInputLayout searchPhoneNumber;
+    @BindView(R.id.search_emailAddress)
+    EditText searchEmailAddress;
     private Contacts contact;
 
     @Override
@@ -58,8 +57,8 @@ public class updateContact extends AppCompatActivity {
                 break;
             case R.id.update_btn:
                 String new_email = searchEmail.getEditText().getText().toString();
-                String new_firstName = searchFirstName.getText().toString();
-                String new_lastName = searchLastName.getText().toString();
+                String new_firstName = searchFirstName.getEditText().getText().toString();
+                String new_lastName = searchLastName.getEditText().getText().toString();
                 String new_phoneNumber = searchPhoneNumber.getEditText().getText().toString();
 
                 updateContactDetails(new_email, new_firstName, new_lastName, new_phoneNumber);
@@ -83,8 +82,8 @@ public class updateContact extends AppCompatActivity {
 
     private void setUpContactForEditing(String email, String firstName, String lastName, String phoneNumber) {
 
-        searchFirstName.setText(firstName);
-        searchLastName.setText(lastName);
+        searchFirstName.getEditText().setText(firstName);
+        searchLastName.getEditText().setText(lastName);
         searchEmail.getEditText().setText(email);
         searchPhoneNumber.getEditText().setText(phoneNumber);
 
