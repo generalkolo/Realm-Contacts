@@ -1,6 +1,8 @@
 package com.semanientreprise.realmcontacts;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -19,21 +21,19 @@ public class updateContact extends AppCompatActivity {
 
     @BindView(R.id.search_emailAddress)
     EditText searchEmailAddress;
-    @BindView(R.id.searchContainer)
-    LinearLayout searchContainer;
-    @BindView(R.id.search_first_name)
-    EditText searchFirstName;
-    @BindView(R.id.search_last_name)
-    EditText searchLastName;
     @BindView(R.id.search_nameContainer)
     LinearLayout searchNameContainer;
-    @BindView(R.id.search_email)
-    EditText searchEmail;
-    @BindView(R.id.search_phone_number)
-    EditText searchPhoneNumber;
-    Realm realm;
     @BindView(R.id.searchResultContainer)
     RelativeLayout searchResultContainer;
+    Realm realm;
+    @BindView(R.id.search_first_name)
+    TextInputEditText searchFirstName;
+    @BindView(R.id.search_last_name)
+    TextInputEditText searchLastName;
+    @BindView(R.id.search_email)
+    TextInputLayout searchEmail;
+    @BindView(R.id.search_phone_number)
+    TextInputLayout searchPhoneNumber;
     private Contacts contact;
 
     @Override
@@ -57,12 +57,12 @@ public class updateContact extends AppCompatActivity {
                     showToast("Please enter user email address");
                 break;
             case R.id.update_btn:
-                String new_email = searchEmail.getText().toString();
+                String new_email = searchEmail.getEditText().getText().toString();
                 String new_firstName = searchFirstName.getText().toString();
                 String new_lastName = searchLastName.getText().toString();
-                String new_phoneNumber = searchPhoneNumber.getText().toString();
+                String new_phoneNumber = searchPhoneNumber.getEditText().getText().toString();
 
-                updateContactDetails(new_email,new_firstName,new_lastName,new_phoneNumber);
+                updateContactDetails(new_email, new_firstName, new_lastName, new_phoneNumber);
                 break;
         }
     }
@@ -74,15 +74,19 @@ public class updateContact extends AppCompatActivity {
 
         realm.commitTransaction();
 
-        setUpContactForEditing(contact.getEmail(), contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber());
+        if (contact == null)
+            showToast("No contact with such email found");
+        else
+            setUpContactForEditing(contact.getEmail(), contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber());
+
     }
 
     private void setUpContactForEditing(String email, String firstName, String lastName, String phoneNumber) {
 
         searchFirstName.setText(firstName);
         searchLastName.setText(lastName);
-        searchEmail.setText(email);
-        searchPhoneNumber.setText(phoneNumber);
+        searchEmail.getEditText().setText(email);
+        searchPhoneNumber.getEditText().setText(phoneNumber);
 
         searchResultContainer.setVisibility(View.VISIBLE);
     }
