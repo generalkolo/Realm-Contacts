@@ -36,7 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchContainer"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        >
 
         <LinearLayout
             android:id="@+id/search_nameContainer"
@@ -77,7 +79,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_below="@+id/search_nameContainer"
+            >
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/search_email"
@@ -98,7 +102,6 @@
                 android:id="@+id/search_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/search_email"
                 android:layout_weight="1">
 
                 <EditText
@@ -113,7 +116,6 @@
                 android:id="@+id/update_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/search_phone_number"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Update" />
