@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".addContact" />
         <activity android:name=".readContacts" />
-        <activity android:name=".updateContact"></activity>
+        <activity android:name=".updateContact" />
+        <activity android:name=".deleteContact"></activity>
     </application>
 
 </manifest>

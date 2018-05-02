@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this,updateContact.class));
                 break;
             case R.id.deleteContact:
+                startActivity(new Intent(this,deleteContact.class));
                 break;
         }
     }
